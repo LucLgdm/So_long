@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 13:57:06 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/19 10:38:39 by lde-merc         ###   ########.fr       */
+/*   Created: 2024/12/19 16:38:08 by lde-merc          #+#    #+#             */
+/*   Updated: 2024/12/19 16:39:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#ifndef UTILS_H
+# define UTILS_H
 
-#include "position.h"
+#include "../libft/libft.h"
 
-typedef struct s_player
-{
-	t_position	*position;
-	t_data		*data;
-} t_player;
+void	print_error_and_exit(void);
 
 #endif

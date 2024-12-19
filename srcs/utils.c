@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_error.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/17 09:48:20 by lde-merc         ###   ########.fr       */
+/*   Created: 2024/12/19 16:37:50 by lde-merc          #+#    #+#             */
+/*   Updated: 2024/12/19 16:40:00 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/utils.h"
 
-// void    input_error(int argc, char **argv)
-// {
-    
-// }
+void	print_error_and_exit(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(EXIT_FAILURE);
+}
