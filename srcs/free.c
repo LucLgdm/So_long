@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 16:38:08 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 11:35:08 by lde-merc         ###   ########.fr       */
+/*   Created: 2024/12/20 11:33:49 by lde-merc          #+#    #+#             */
+/*   Updated: 2024/12/20 11:37:13 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "../includes/utils.h"
 
-# include "../libft/libft.h"
-# include "world.h"
+void	free_all(t_world *world)
+{
+	int	i;
 
-void	print_error_and_exit(void);
-void	free_all(t_world *world);
-#endif
+	i = -1;
+	while (world->map->map[++i])
+		free(world->map->map[i]);
+	free(world->map->exit);
+	free(world->map->collect);
+	free(world->map->start_pos);
+	free(world->map->map);
+}
