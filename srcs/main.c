@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:46:07 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/19 16:41:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:04:36 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	main(int argc, char **argv)
 {
-	t_world	world;
-	
-	world.map = map_constructor(argc, argv);
-	
-}
+	t_world	*world;
 
+	world = world_constructor(argc, argv, world);
+	free_all(world);
+}
 
 /************************************************************************
  * Map's parsing

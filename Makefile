@@ -6,12 +6,12 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 12:24:12 by lde-merc          #+#    #+#              #
-#    Updated: 2024/12/17 12:53:57 by lde-merc         ###   ########.fr        #
+#    Updated: 2024/12/20 14:49:26 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 LIBFT = libft/libft.a
 MLX_LIB = mlx/libmlx.a

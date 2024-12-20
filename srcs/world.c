@@ -6,88 +6,49 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/19 17:46:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:18:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/world.h"
 
-t_map	*map_constructor(int argc, char **argv)
+t_world	*world_constructor(int argc, char **argv, t_world *world)
 {
-	t_map	*map;
-	int		fd;
+	int	fd;
 
 	if (argc != 2)
-		print_error_and_exit();
-	else
-	{
-		map = malloc(sizeof(t_map));
-		check_shape_map(fd, map);
-	}
-	
-	return (map);
+		print_message_and_exit("Ereor\n");
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		print_message_and_exit("Error while opening the file\n");
+	extract_map(fd, world);
+	return (world);
 }
 
-/*
-if (check_file_name(argv[1]))
-		{
-			fd = open(argv[1], O_RDONLY);
-			check_shape_map(fd);
-			check_content_map(fd);
-
-		}
-		*/
-
-void	check_shape_map(int fd, t_map *map)
+void		extract_map(int fd, t_world *world)
 {
+	char 	*line;
 	int		height;
-	int		width;
-	int		i;
-	char	*line;
-	
+
+	world->map = (t_map *)malloc(sizeof(t_map));
+	if (!world->map)
+		print_message_and_exit("Error with map malloc");
 	height = 0;
-	while (line = get_next_line(fd))
+	while ((line = get_next_line(fd)))
 	{
-		if (height == 0)
-			width = ft_strlen(line);
-		else
+		++height;
+		if (height == 1)
 		{
-			if (width != ft_strlen(line))
-				print_error_and_exit();
+			world->map->map = (char *)malloc(height * sizeof(char *));
+			if (!world->map->map)
+				print_message_and_exit("Error with map->map malloc");
 		}
-		height++;
+		new_line_in_map(world, height);
+		
 	}
-	map->map = (char**)malloc(height * sizeof(char *));
-	i = -1;
-	while (++i < height)
-		map->map[i] = (char *)malloc(width * sizeof(char));
 }
 
-void	check_content_map(int fd)
+void	new_line_in_map(t_world *world, int height)
 {
-	char	*line;
-	int		i;
-	int		height;
-
-	height = 0;
-	while(line = get_next_line(fd))
-	{
-		i = -1;
-		if (height == 0)
-		{
-			while(line[++i])
-			{
-				if (line[i] != '1')
-					print_error_and_exit();
-			}
-		}
-		else
-		{
-			while(line[++i])
-			{
-				if (line[i] != '0' && line[i] != '1' && line[i] != 'E' && line[i] != 'C' && line[i] != 'P')
-					print_error_and_exit();
-			}
-		}
-	}
+	// reprendre l'idee du dico du rush 02
 }
