@@ -14,17 +14,24 @@
 # define MAP_H
 
 # include "position.h"
+# include "utils.h"
 # include <fcntl.h>
 # include <unistd.h>
 
 typedef struct s_map
 {
 	char		**map;
-	int			e;
+	bool		e;
 	int			c;
+	int			height;
+	int			width;
 	t_position	exit;
-	t_position	collect;
 	t_position	start_pos;
 }	t_map;
+
+void	check_map_error(t_world *world);
+void	check_border(t_map *map);
+void	check_content(t_map *map);
+void	fill_struct(t_map *map, char c);
 
 #endif

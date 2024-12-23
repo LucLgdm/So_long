@@ -15,4 +15,7 @@
 
 # include "../libft/libft.h"
 
+// Error handling
+void		print_message_and_exit(char *message);
+
 #endif

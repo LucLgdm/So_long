@@ -18,8 +18,8 @@
 
 typedef struct s_position
 {
-	int	x;
-	int	y;
+	int	*x;
+	int	*y;
 }	t_position;
 
 #endif

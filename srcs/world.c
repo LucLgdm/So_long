@@ -22,6 +22,7 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	if (fd == -1)
 		print_message_and_exit("Error while opening the file\n");
 	extract_map(fd, world);
+	check_map_error(world);
 	return (world);
 }
 
@@ -46,6 +47,8 @@ void		extract_map(int fd, t_world *world)
 		++height;
 	}
 	world->map->map[height] = NULL;
+	world->map->height = height;
+	world->map->width = ft_strlen(world->map->map[0]);
 }
 
 void	new_line_in_map(t_world *world, int height, char *line)
@@ -63,3 +66,4 @@ void	new_line_in_map(t_world *world, int height, char *line)
 	world->map->map[height] = ft_strdup(line);
 	free(tmp);
 }
+

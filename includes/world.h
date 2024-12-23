@@ -33,8 +33,7 @@ t_world		*world_constructor(int argc, char **argv, t_world *world);
 void		extract_map(int fd, t_world *world);
 void		new_line_in_map(t_world *world, int height, chqr *line);
 
-// Error handling
-void		print_message_and_exit(char *message);
+
 
 // World liberation
 void		free_all(t_world *world);
