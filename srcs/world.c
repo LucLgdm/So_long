@@ -17,7 +17,7 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	int	fd;
 
 	if (argc != 2)
-		print_message_and_exit("Ereor\n");
+		print_message_and_exit("Error\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		print_message_and_exit("Error while opening the file\n");
@@ -36,19 +36,30 @@ void		extract_map(int fd, t_world *world)
 	height = 0;
 	while ((line = get_next_line(fd)))
 	{
-		++height;
-		if (height == 1)
+		if (height == 0)
 		{
-			world->map->map = (char *)malloc(height * sizeof(char *));
+			world->map->map = (char *)malloc(sizeof(char *));
 			if (!world->map->map)
 				print_message_and_exit("Error with map->map malloc");
 		}
-		new_line_in_map(world, height);
-		
+		new_line_in_map(world, height, line);
+		++height;
 	}
+	world->map->map[height] = NULL;
 }
 
-void	new_line_in_map(t_world *world, int height)
+void	new_line_in_map(t_world *world, int height, char *line)
 {
-	// reprendre l'idee du dico du rush 02
+	int		i;
+	char	**tmp;
+
+	tmp = world->map->map;
+	world->map->map = malloc((height + 1) * sizeof(char *));
+	if (!world->map->map)
+		print_message_and_exit("Error with map->map malloc");
+	i = -1;
+	while (++i < height)	
+		world->map->map[i] = tmp[i];
+	world->map->map[height] = ft_strdup(line);
+	free(tmp);
 }
