@@ -23,6 +23,8 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 		print_message_and_exit("Error while opening the file\n");
 	extract_map(fd, world);
 	check_map_error(world);
+	if (world->map->height == world->map->width)
+		print_message_and_exit("Error\n");
 	return (world);
 }
 

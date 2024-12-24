@@ -34,4 +34,8 @@ void	check_border(t_map *map);
 void	check_content(t_map *map);
 void	fill_struct(t_map *map, char c);
 
+// DFS Algo
+void	check_way(t_map *map);
+void	dfs(int x, int y, t_map *map, char **visited);
+bool	is_valid(int x, int y, t_map *map, char **visited);
 #endif

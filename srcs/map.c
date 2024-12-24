@@ -16,6 +16,7 @@ void	check_map_error(t_world *world)
 {
 	check_border(world->map);
 	check_content(world->map);
+	check_way(world->map);
 }
 
 void	check_border(t_map *map)
@@ -26,13 +27,13 @@ void	check_border(t_map *map)
     while (++i < map->width)
     {
         if (map->map[0][i] != '1' || map->map[map->height - 1][i] != '1')
-            print_message_and_exit("Error border map");
+            print_message_and_exit("Error\n");
     }
     i = -1;
     while (++i < map->height)
     {
         if (map->map[i][0] != '1' || map->map[i][map->width] != '1')
-            print_message_and_exit("Error border map");
+            print_message_and_exit("Error\n");
     }
 }
 void    check_content(t_map *map)
@@ -49,12 +50,12 @@ void    check_content(t_map *map)
 			if (map->map[i][j] != '1' || map->map[i][j] != '0' \ 
 				|| map->map[i][j] != 'P' || map->map[i][j] != 'E' \ 
 				|| map->map[i][j] != 'C')
-				print_message_and_exit("Error content map");
+				print_message_and_exit("Error\n");
 			fill_struct(map, map->map[i][j]);
 		}
 	}
 	if (map->c == 0 || map->e == 0)
-		print_message_and_exit("Error, missing gold or exit");
+		print_message_and_exit("Error\n");
 }
 
 void	fill_struct(t_map *map, char c)
@@ -75,3 +76,4 @@ void	fill_struct(t_map *map, char c)
 	else
 		break ;
 }
+

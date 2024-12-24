@@ -15,9 +15,23 @@
 int	main(int argc, char **argv)
 {
 	t_world	*world;
+	void    *mlx;
+	void	*window;
+	int		height;
+	int		width;
 
 	world = world_constructor(argc, argv, world);
+	mlx = mlx_init();
+	mlx_get_screen_size(mlx, &height, &width);
+	window = mlx_new_window(mlx, height, width, "So_long");
+    world->data->img = mlx_new_image(mlx, height, width);
+	world->data->addr = mlx_get_data_addr(world->data->img, 
+		&world->data->bits_per_pixel, &world->data->.line_length,
+		&world->data->.endian);
+	mlx_put_image_to_window(mlx, window, world->data->img, 0, 0);
+    mlx_loop(mlx);
 	free_all(world);
+	return (0);
 }
 
 /************************************************************************
