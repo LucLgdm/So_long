@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:43:15 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/23 17:43:15 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/02 14:30:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/world.h"
 
 void	check_map_error(t_world *world)
 {
@@ -47,33 +47,33 @@ void    check_content(t_map *map)
 		j = -1;
 		while (++j < map->width)
 		{
-			if (map->map[i][j] != '1' || map->map[i][j] != '0' \ 
-				|| map->map[i][j] != 'P' || map->map[i][j] != 'E' \ 
+			if (map->map[i][j] != '1' || map->map[i][j] != '0'\
+				|| map->map[i][j] != 'P' || map->map[i][j] != 'E'\
 				|| map->map[i][j] != 'C')
 				print_message_and_exit("Error\n");
-			fill_struct(map, map->map[i][j]);
+			fill_struct(map, i, j);
 		}
 	}
 	if (map->c == 0 || map->e == 0)
 		print_message_and_exit("Error\n");
 }
 
-void	fill_struct(t_map *map, char c)
+void	fill_struct(t_map *map, int i, int j)
 {
-	if (c == 'P')
+	if (map->map[i][j] == 'P')
 	{
 		map->start_pos->x = i;
 		map->start_pos->y = j;
 	}
-	else if (c == 'E')
+	else if (map->map[i][j] == 'E')
 	{
 		map->exit->x = i;
 		map->exit->y = j;
 		map->e = 1;
 	}
-	else if (c == 'C')
+	else if (map->map[i][j] == 'C')
 		map->c++;
 	else
-		break ;
+		return ;
 }
 

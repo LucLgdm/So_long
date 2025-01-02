@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 16:18:43 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:09:34 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		extract_map(int fd, t_world *world)
 	{
 		if (height == 0)
 		{
-			world->map->map = (char *)malloc(sizeof(char *));
+			world->map->map = (char **)malloc(sizeof(char *));
 			if (!world->map->map)
 				print_message_and_exit("Error with map->map malloc");
 		}

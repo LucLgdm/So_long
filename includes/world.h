@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 06:42:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 16:17:27 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:28:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ typedef struct s_world
 // World construction
 t_world		*world_constructor(int argc, char **argv, t_world *world);
 void		extract_map(int fd, t_world *world);
-void		new_line_in_map(t_world *world, int height, chqr *line);
-
+void		new_line_in_map(t_world *world, int height, char *line);
+void		check_map_error(t_world *world);
 
 
 // World liberation
