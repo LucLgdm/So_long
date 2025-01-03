@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/03 14:31:09 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 15:51:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 t_world	*world_constructor(int argc, char **argv, t_world *world)
 {
 	int	fd;
-
+	int	size;
+	
 	if (argc != 2)
+		print_message_and_exit("Error\n");
+	size = ft_strlen(argv[1]);
+	if (ft_strncmp((argv[1] + size - 4), ".ber", 4))
 		print_message_and_exit("Error\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
