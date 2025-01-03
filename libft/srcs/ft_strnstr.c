@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:36:44 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/11/27 13:56:04 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 10:19:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	size_t	big_size;
 	char	*big2;
 
-	big_size = ft_strlen(big);
 	big2 = (char *)big;
 	if (little[0] == '\0')
 		return (big2);

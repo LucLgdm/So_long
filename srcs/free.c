@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:33:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 15:04:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:11:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,27 @@
 
 void	free_all(t_world *world)
 {
+	free_map(world);
+	free(world);
+}
+
+void	free_map(t_world *world)
+{
 	int	i;
 
 	i = -1;
-	while (world->map->map[++i])
-		free(world->map->map[i]);
-	free(world->map->map);
+	if (world->map->start_pos)
+		free(world->map->start_pos);
+	if (world->map->exit)
+		free(world->map->exit);
+	if (world->map->map)
+	{
+		while (++i < world->map->height)
+		{
+			if (world->map->map[i])
+				free(world->map->map[i]);
+		}
+		free(world->map->map);
+	}
+	free(world->map);
 }
-// free(world->map->exit);
-// free(world->map->collect);
-// free(world->map->start_pos);

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 10:20:13 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/11/28 15:58:38 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 10:18:47 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdarg.h>
 
 typedef struct s_list	t_list;
 struct s_list

@@ -6,14 +6,14 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/04 12:51:11 by lde-merc          #+#    #+#              #
-#    Updated: 2024/11/27 14:55:02 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/01/03 10:18:12 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = libft.a
 
-CC = cc
+CC = gcc
 AR = ar -rcs
 
 SRC_DIR = srcs

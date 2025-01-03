@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/02 14:09:34 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:31:09 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	return (world);
 }
 
-void		extract_map(int fd, t_world *world)
+void	extract_map(int fd, t_world *world)
 {
-	char 	*line;
+	char	*line;
 	int		height;
 
 	world->map = (t_map *)malloc(sizeof(t_map));
 	if (!world->map)
 		print_message_and_exit("Error with map malloc");
 	height = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		if (height == 0)
 		{
@@ -47,10 +48,10 @@ void		extract_map(int fd, t_world *world)
 		}
 		new_line_in_map(world, height, line);
 		++height;
+		line = get_next_line(fd);
 	}
-	world->map->map[height] = NULL;
 	world->map->height = height;
-	world->map->width = ft_strlen(world->map->map[0]);
+	world->map->width = ft_strlen(world->map->map[0]) - 1;
 }
 
 void	new_line_in_map(t_world *world, int height, char *line)
@@ -63,9 +64,8 @@ void	new_line_in_map(t_world *world, int height, char *line)
 	if (!world->map->map)
 		print_message_and_exit("Error with map->map malloc");
 	i = -1;
-	while (++i < height)	
+	while (++i < height)
 		world->map->map[i] = tmp[i];
 	world->map->map[height] = ft_strdup(line);
 	free(tmp);
 }
-
