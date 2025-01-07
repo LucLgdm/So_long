@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/07 15:23:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/07 16:18:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,11 @@ void	new_line_in_map(t_world *world, int height, char *line)
 		world->map->map[i] = tmp[i];
 	world->map->map[height] = ft_strdup(line);
 	free(tmp);
+}
+
+void	check_map_error(t_world *world)
+{
+	check_border(world->map);
+	check_content(world->map);
+	check_way(world->map);
 }
