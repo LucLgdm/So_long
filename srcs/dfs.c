@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 19:14:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/03 15:20:28 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/03 16:20:52 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,7 @@ void	dfs(int x, int y, t_map *map, char **visited)
 	dy = (int *)malloc(4 * sizeof(int));
 	if (!dy)
 		print_message_and_exit("Error dfs\n");
-	dx[0] = 1;
-	dx[1] = -1;
-	dx[2] = 0;
-	dx[3] = 0;
-	dy[0] = 0;
-	dy[1] = 0;
-	dy[2] = 1;
-	dy[3] = -1;
+	fill_dx_dy(dx, dy);
 	visited[x][y] = 1;
 	i = -1;
 	while (++i < 4)
@@ -81,4 +74,16 @@ bool	is_valid(int x, int y, t_map *map, char **visited)
 	c = map->map[x][y];
 	return (x >= 0 && x < map->height && y >= 0 && y < map->width
 		&& !visited[x][y] && (c == '0' || c == 'C' || c == 'E'));
+}
+
+void	fill_dx_dy(int *dx, int *dy)
+{
+	dx[0] = 1;
+	dx[1] = -1;
+	dx[2] = 0;
+	dx[3] = 0;
+	dy[0] = 0;
+	dy[1] = 0;
+	dy[2] = 1;
+	dy[3] = -1;
 }

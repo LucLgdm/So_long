@@ -6,31 +6,33 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:46:07 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/03 15:21:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:24:50 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/world.h"
 
+int height_screen, width_screen;
+
 int	main(int argc, char **argv)
 {
 	t_world	*world;
 
-	// void    *mlx;
-	// void	*window;
-	// int		height;
-	// int		width;
+	// Initialisation
 	world = (t_world *)malloc(sizeof(t_world));
 	world = world_constructor(argc, argv, world);
-	// mlx = mlx_init();
-	// mlx_get_screen_size(mlx, &height, &width);
-	// window = mlx_new_window(mlx, height, width, "So_long");
-	// world->data->img = mlx_new_image(mlx, height, width);
-	// world->data->addr = mlx_get_data_addr(world->data->img,
-	// 	&world->data->bits_per_pixel, &world->data->line_length,
-	// 	&world->data->endian);
-	// mlx_put_image_to_window(mlx, window, world->data->img, 0, 0);
-	// mlx_loop(mlx);
+
+	// image_generator(world);
+	
+	world->mlx = mlx_init();
+	mlx_get_screen_size(world->mlx, &width_screen, &height_screen);
+	world->height_w = height_screen / 2;
+	world->width_w = width_screen / 2;
+	
+	// Creation of the window
+    world->window = mlx_new_window(world->mlx, world->width_w, world->height_w, "so_long");
+	
+	mlx_loop(world->mlx);
 	free_all(world);
 	return (0);
 }

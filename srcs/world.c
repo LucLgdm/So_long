@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/03 15:51:20 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:23:28 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 {
 	int	fd;
 	int	size;
-	
+
 	if (argc != 2)
 		print_message_and_exit("Error\n");
 	size = ft_strlen(argv[1]);
@@ -28,7 +28,7 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	extract_map(fd, world);
 	check_map_error(world);
 	if (world->map->height == world->map->width)
-		print_message_and_exit("Error\n");
+		print_message_and_exit("Error\n");	
 	return (world);
 }
 

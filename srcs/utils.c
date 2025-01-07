@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 16:37:50 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 15:16:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/07 11:06:09 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	print_message_and_exit(char *message)
 {
-	perror(message);
+	ft_putstr_fd(message, 2);
 	exit(EXIT_FAILURE);
 }

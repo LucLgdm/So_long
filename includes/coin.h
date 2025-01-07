@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.h                                             :+:      :+:    :+:   */
+/*   coin.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 13:53:51 by lde-merc          #+#    #+#             */
-/*   Updated: 2024/12/20 15:01:36 by lde-merc         ###   ########.fr       */
+/*   Created: 2025/01/07 14:29:01 by lde-merc          #+#    #+#             */
+/*   Updated: 2025/01/07 14:32:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DATA_H
-# define DATA_H
+#ifndef COIN_H
+# define COIN_H
 
-# include "../mlx/mlx.h"
+# include "position.h"
 
-typedef struct s_data
+typedef struct s_coin
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
+    t_position  **position;
+    void        **image;
+}   t_coin;
 
 #endif
