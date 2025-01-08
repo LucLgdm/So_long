@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 06:42:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 12:04:00 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:07:51 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
 # include "player.h"
-# include "utils.h"
 # include <stdint.h>
 # include <errno.h>
+# include "utils.h"
 
 typedef struct s_world
 {
@@ -30,6 +30,7 @@ typedef struct s_world
 	int			height_w;
 	t_map		*map;
 	t_player	*player;
+	int			move;
 }	t_world;
 
 // World construction
@@ -48,5 +49,10 @@ void		image_exit(t_world *world);
 // World liberation
 void		free_all(t_world *world);
 void		free_map(t_world *world);
+void		free_coin(t_world *world);
+void		free_image(t_world *world);
+
+// Event
+void	event_handle(t_world *world);
 
 #endif

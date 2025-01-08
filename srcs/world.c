@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 09:36:45 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:54:20 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	check_map_error(world);
 	if (world->map->height == world->map->width)
 		print_message_and_exit("Error\n");
+	world->player = malloc(sizeof(t_player));
+	if (!world->player)
+		print_message_and_exit("Error malloc player\n");
+	world->player->position = malloc(sizeof(t_position));
+	if (!world->player->position)
+		print_message_and_exit("Error malloc position player\n");
+	world->player->position->x = world->map->start_pos->x;
+	world->player->position->y = world->map->start_pos->y;
 	return (world);
 }
 

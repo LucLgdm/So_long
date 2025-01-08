@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:46:07 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 11:49:13 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:08:09 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 			printf("%c", world->map->map[i][j]);
 		printf("\n");
 	}
-	
+	world->move = 0;
 	world->mlx = mlx_init();
 	mlx_get_screen_size(world->mlx, &world->width_w, &world->height_w);
 	world->height_w /= 3;
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 	// Creation of the window
 	world->window = mlx_new_window(world->mlx, world->width_w, world->height_w, "so_long");
 	image_generator(world);
+	event_handle(world);
 	mlx_loop(world->mlx);
 	free_all(world);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:08:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 12:42:08 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:55:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,6 @@ void	image_coin(t_world *world)
 
 void	image_player(t_world *world)
 {
-	world->player = malloc(sizeof(t_player));
-	if (!world->player)
-		print_message_and_exit("Error malloc player\n");
 	world->player->image = malloc(sizeof(t_image));
 	if (!world->player->image)
 		print_message_and_exit("Error malloc image player\n");
@@ -87,7 +84,7 @@ void	image_player(t_world *world)
 	if (!world->player->image->img)
 		print_message_and_exit("Error malloc image player\n");
 	world->player->image->img = mlx_xpm_file_to_image(world->mlx, "textures/player.xpm", &world->player->image->img_width, &world->player->image->img_height);
-	mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, world->map->image[0]->img_width * world->map->start_pos->x, world->map->image[0]->img_height * world->map->start_pos->y);
+	mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, world->map->image[0]->img_width * world->player->position->x, world->map->image[0]->img_height * world->player->position->y);
 }
 
 void	image_exit(t_world *world)
