@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:08:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/07 15:18:51 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:36:55 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	image_map(t_world *world)
 	}
 }
 
-void	image_coin(t_world * world)
+void	image_coin(t_world *world)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:38:27 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/07 16:19:55 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:34:22 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct s_map
 void	check_border(t_map *map);
 void	check_content(t_map *map);
 void	fill_struct(t_map *map, int i, int j);
-void	fill_coin(t_map *map, int i, int j);
 void	fill_coin_first(t_map *map, int i, int j);
+void	fill_coin_last(t_map *map, int i, int j);
 
 // DFS Algo
 void	check_way(t_map *map);

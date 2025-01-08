@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:43:15 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/07 16:56:36 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 09:34:57 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	check_content(t_map *map)
 	map->coin->position = malloc(sizeof(t_position *));
 	if (!map->coin || !map->coin->position)
 		print_message_and_exit("Error malloc check content\n");
-	map->coin->position[0] = NULL;
 	map->c = 0;
 	while (++i < map->height)
 	{
@@ -80,43 +79,45 @@ void	fill_struct(t_map *map, int i, int j)
 	else if (map->map[i][j] == 'C')
 	{
 		map->c++;
-		fill_coin(map, i, j);
-	}
-	else
-		return ;
-}
-
-void	fill_coin(t_map *map, int i, int j)
-{
-	t_position	**tmp_pos;
-	int			k;
-
-	if (map->c == 1)
-		fill_coin_first(map, i, j);
-	else
-	{
-		tmp_pos= map->coin->position;
-		map->coin->position = (t_position **)malloc(map->c * sizeof(t_position *));
-		if (!map->coin->position)
-			print_message_and_exit("Error malloc coin\n");
-		k = -1;
-		while (++k < map->c)
-		{
-			map->coin->position[k] = (t_position *)malloc(sizeof(t_position));
-			if (!map->coin->position[k])
-				print_message_and_exit("Error malloc coin\n");
-			map->coin->position[k]->x = tmp_pos[k]->x;
-			map->coin->position[k]->y = tmp_pos[k]->y;
-			free(tmp_pos[k]);
-		}
-		map->coin->position[k]->x = j;
-		map->coin->position[k]->y = i;
-		free(tmp_pos);
+		if (map->c == 1)
+			fill_coin_first(map, i, j);
+		else
+			fill_coin_last(map, i, j);
 	}
 }
 
 void	fill_coin_first(t_map *map, int i, int j)
 {
+	map->coin->position[0] = (t_position *)malloc(sizeof(t_position));
+	if (!map->coin->position[0])
+		print_message_and_exit("Error malloc first coin\n");
 	map->coin->position[0]->x = j;
 	map->coin->position[0]->y = i;
+}
+
+void	fill_coin_last(t_map *map, int i, int j)
+{
+	t_position	**tmp_pos;
+	int			k;
+
+	tmp_pos = map->coin->position;
+	map->coin->position = (t_position **)malloc(map->c * sizeof(t_position *));
+	if (!map->coin->position)
+		print_message_and_exit("Error malloc coin\n");
+	k = -1;
+	while (++k < map->c - 1)
+	{
+		map->coin->position[k] = (t_position *)malloc(sizeof(t_position));
+		if (!map->coin->position[k])
+			print_message_and_exit("Error malloc coin\n");
+		map->coin->position[k]->x = tmp_pos[k]->x;
+		map->coin->position[k]->y = tmp_pos[k]->y;
+		free(tmp_pos[k]);
+	}
+	map->coin->position[k] = (t_position *)malloc(sizeof(t_position));
+	if (!map->coin->position[k])
+		print_message_and_exit("Error malloc coin\n");
+	map->coin->position[k]->x = j;
+	map->coin->position[k]->y = i;
+	free(tmp_pos);
 }
