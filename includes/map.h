@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:38:27 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 09:34:22 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:07:31 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include "coin.h"
+# include "exit.h"
 
 typedef struct s_map
 {
@@ -29,7 +30,8 @@ typedef struct s_map
 	t_position	*exit;
 	t_position	*start_pos;
 	t_coin		*coin;
-	void		***image;
+	t_image		**image;
+	t_exit		*texit;
 }	t_map;
 
 void	check_border(t_map *map);

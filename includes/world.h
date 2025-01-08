@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 06:42:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/07 15:15:40 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 12:04:00 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void		check_map_error(t_world *world);
 void		image_generator(t_world *world);
 void		image_map(t_world *world);
 void		image_coin(t_world * world);
+void		image_player(t_world *world);
+void		image_exit(t_world *world);
 
 // World liberation
 void		free_all(t_world *world);

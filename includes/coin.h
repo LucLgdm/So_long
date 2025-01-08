@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:29:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/07 15:53:42 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:37:09 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 # define COIN_H
 
 # include "position.h"
-
+# include "image.h"
 typedef struct s_coin
 {
     t_position  **position;
-    void        *image;
+    t_image     *image;
 }   t_coin;
 
 #endif

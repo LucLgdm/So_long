@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.h                                           :+:      :+:    :+:   */
+/*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 13:57:06 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 10:37:33 by lde-merc         ###   ########.fr       */
+/*   Created: 2025/01/08 10:34:58 by lde-merc          #+#    #+#             */
+/*   Updated: 2025/01/08 10:40:38 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLAYER_H
-# define PLAYER_H
+#ifndef IMAGE_H
+# define IMAGE_H
 
-# include "position.h"
-# include "image.h"
-
-typedef struct s_player
+typedef struct s_image
 {
-	t_position	*position;
-	t_image		*image;
-}	t_player;
+    void	*img;
+    int     img_height;
+    int     img_width;
+} t_image;
 
 #endif
