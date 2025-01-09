@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:08:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 15:55:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	image_generator(t_world *world)
 {
-	world->width_w = world->map->width;
-	world->height_w = world->map->height;
 	image_map(world);
 	image_player(world);
 	image_coin(world);
@@ -24,10 +22,6 @@ void	image_generator(t_world *world)
 
 void	image_map(t_world *world)
 {
-	int	i;
-	int	j;
-
-	i = -1;
 	world->map->image = malloc(2 * sizeof(t_image *));
 	if (!world->map->image)
 		print_message_and_exit("Error malloc image\n");
@@ -39,40 +33,19 @@ void	image_map(t_world *world)
 	world->map->image[1]->img = malloc(sizeof(void));
 	if (!world->map->image[0]->img || !world->map->image[1]->img)
 		print_message_and_exit("Error malloc map image\n");
-	i = -1;
-	while (++i < world->map->height)
-	{
-		j = -1;
-		while (++j < world->map->width)
-		{
-			if (world->map->map[i][j] == '1')
-			{
-				world->map->image[0]->img = mlx_xpm_file_to_image(world->mlx, "textures/wall.xpm", &world->map->image[0]->img_width, &world->map->image[0]->img_height);
-				mlx_put_image_to_window(world->mlx, world->window, world->map->image[0]->img, j * world->map->image[0]->img_width, i * world->map->image[0]->img_height);
-			}
-			else
-			{
-				world->map->image[1]->img = mlx_xpm_file_to_image(world->mlx, "textures/empty.xpm", &world->map->image[1]->img_width, &world->map->image[1]->img_height);
-				mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, j * world->map->image[0]->img_width, i * world->map->image[0]->img_height);
-			}
-		}
-	}
+	world->map->image[0]->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_01.xpm", &world->map->image[0]->img_width, &world->map->image[0]->img_height);
+	world->map->image[1]->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_38.xpm", &world->map->image[1]->img_width, &world->map->image[1]->img_height);
 }
 
 void	image_coin(t_world *world)
 {
-	int	i;
-
-	i = -1;
 	world->map->coin->image = malloc(sizeof(t_image));
 	if (!world->map->coin->image)
 		print_message_and_exit("Error malloc image coin\n");
 	world->map->coin->image->img = malloc(sizeof(void));
 	if (!world->map->coin->image->img)
 		print_message_and_exit("Error malloc image coin\n");
-	world->map->coin->image->img = mlx_xpm_file_to_image(world->mlx, "textures/coin.xpm", &world->map->coin->image->img_width, &world->map->coin->image->img_height);
-	while (world->map->coin->position[++i])
-		mlx_put_image_to_window(world->mlx, world->window, world->map->coin->image->img, world->map->image[0]->img_width * world->map->coin->position[i]->x, world->map->image[0]->img_height * world->map->coin->position[i]->y);
+	world->map->coin->image->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_58.xpm", &world->map->coin->image->img_width, &world->map->coin->image->img_height);
 }
 
 void	image_player(t_world *world)
@@ -83,8 +56,9 @@ void	image_player(t_world *world)
 	world->player->image->img = malloc(sizeof(void));
 	if (!world->player->image->img)
 		print_message_and_exit("Error malloc image player\n");
-	world->player->image->img = mlx_xpm_file_to_image(world->mlx, "textures/player.xpm", &world->player->image->img_width, &world->player->image->img_height);
-	mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, world->map->image[0]->img_width * world->player->position->x, world->map->image[0]->img_height * world->player->position->y);
+	world->player->image->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_19.xpm", &world->player->image->img_width, &world->player->image->img_height);
+	world->player->position->x *= world->map->image[0]->img_width;
+	world->player->position->y *= world->map->image[0]->img_height;
 }
 
 void	image_exit(t_world *world)
@@ -98,6 +72,5 @@ void	image_exit(t_world *world)
 	world->map->texit->image->img = malloc(sizeof(void));
 	if (!world->map->texit->image->img)
 		print_message_and_exit("Error malloc image exit\n");
-	world->map->texit->image->img = mlx_xpm_file_to_image(world->mlx, "textures/exit.xpm", &world->map->texit->image->img_width, &world->map->texit->image->img_height);
-	mlx_put_image_to_window(world->mlx, world->window, world->map->texit->image->img, world->map->image[0]->img_width * world->map->exit->x, world->map->image[0]->img_height * world->map->exit->y);
+	world->map->texit->image->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_25.xpm", &world->map->texit->image->img_width, &world->map->texit->image->img_height);
 }

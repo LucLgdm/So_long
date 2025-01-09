@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:33:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 14:09:32 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:01:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	free_coin(t_world *world)
 		}
 		if (world->map->coin->position)
 		{
-			while(world->map->coin->position[++i])
+			while (world->map->coin->position[++i])
 				free(world->map->coin->position[i]);
 		}
 		free(world->map->coin->position);
@@ -77,11 +77,11 @@ void	free_image(t_world *world)
 	i = -1;
 	if (world->map->image)
 	{
-		while(world->map->image[++i])
+		while (world->map->image[++i])
 		{
 			free(world->map->image[i]->img);
 			free(world->map->image[i]);
 		}
-		free (world->map->image);
+		free(world->map->image);
 	}
 }

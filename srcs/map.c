@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:43:15 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/08 15:52:08 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 08:40:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ void	fill_struct(t_map *map, int i, int j)
 		map->start_pos = (t_position *)malloc(sizeof(t_position));
 		if (!map->start_pos)
 			print_message_and_exit("Error malloc start_pos\n");
-		map->start_pos->x = i;
-		map->start_pos->y = j;
+		map->start_pos->x = j;
+		map->start_pos->y = i;
 	}
 	else if (map->map[i][j] == 'E')
 	{
 		map->exit = (t_position *)malloc(sizeof(t_position));
 		if (!map->exit)
 			print_message_and_exit("Error malloc exit\n");
-		map->exit->x = i;
-		map->exit->y = j;
+		map->exit->x = j;
+		map->exit->y = i;
 		map->e = 1;
 	}
 	else if (map->map[i][j] == 'C')
