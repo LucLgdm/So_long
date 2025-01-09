@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 16:10:44 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:25:49 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	move_player(t_world *world, int key)
 {
     int	x_tmp;
 	int	y_tmp;
+    char    c;
 
     x_tmp = world->player->position->x;
     y_tmp = world->player->position->y;
@@ -52,22 +53,21 @@ void	move_player(t_world *world, int key)
 		y_tmp -= world->map->image[1]->img_height;
 	else if (key == 115 && y_tmp + world->map->image[1]->img_height < world->height_w - 1)
 		y_tmp += world->map->image[1]->img_height;
-    ft_printf("\tposition player : (%i, %i)\tmap = %c\n", x_tmp / world->map->image[0]->img_width, y_tmp / world->map->image[0]->img_height, world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width]);
-    if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] != '1') 
+    c = world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width];
+    ft_printf("\tposition player : (%i, %i)\tmap = %c\n", x_tmp / world->map->image[0]->img_width, y_tmp / world->map->image[0]->img_height, c);
+    if (c != '1') 
     {
-        if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] == 'E' && world->map->c == 0)
-        {
-            close_window(world);
-        }
-	    mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, world->player->position->x, world->player->position->y);
+        mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, world->player->position->x, world->player->position->y);
         mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, x_tmp, y_tmp);
         world->player->position->x = x_tmp;
         world->player->position->y = y_tmp;
-        if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] == 'C')
+        if (c == 'C')
         {
             world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] = '0';
             world->map->c--;
         }
         world->move++;
     }
+    else if (c == 'E' && world->map->c == 0)
+        close_window(world);
 }
