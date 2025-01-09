@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:08:41 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 14:08:14 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:19:43 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	image_coin(t_world *world)
 	world->map->coin->image->img = malloc(sizeof(void));
 	if (!world->map->coin->image->img)
 		print_message_and_exit("Error malloc image coin\n");
-	world->map->coin->image->img = mlx_xpm_file_to_image(world->mlx, "textures/1_tiles/FieldsTile_58.xpm", &world->map->coin->image->img_width, &world->map->coin->image->img_height);
+	world->map->coin->image->img = mlx_xpm_file_to_image(world->mlx, "textures/2_objects/6_Flower/1.xpm", &world->map->coin->image->img_width, &world->map->coin->image->img_height);
 }
 
 void	image_player(t_world *world)

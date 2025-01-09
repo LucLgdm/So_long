@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 14:05:37 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:10:44 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	key_handle(int key, void *data)
 
 	world = (t_world *)data;
 	if (key == 65307)
-		close_window(world);
+        close_window(world);
 	move_player(world, key);
 	ft_printf("\rNombre de deplacement : %i", world->move);
 	return (0);
@@ -33,32 +33,41 @@ int	close_window(t_world *world)
 	// mlx_destroy_image(world->mlx, world->map->coin->image->img);
 	// mlx_destroy_window(world->mlx, world->window);
 	// return (0);
-	(void)world;
-	exit(0);
+	free_all(world);
+    exit(0);
 }
 
 void	move_player(t_world *world, int key)
 {
-	mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, world->player->position->x, world->player->position->y);
-	if (key == 97 && world->player->position->x - world->map->image[1]->img_width > 0)
-	{
-		world->player->position->x -= world->map->image[1]->img_width;
-		world->move += 1;
-	}
-	else if (key == 100 && world->player->position->x + world->map->image[1]->img_width < world->width_w - 1)
-	{
-		world->player->position->x += world->map->image[1]->img_width;
-		world->move += 1;
-	}
-	else if (key == 119 && world->player->position->y - world->map->image[1]->img_height > 0)
-	{
-		world->player->position->y -= world->map->image[1]->img_height;
-		world->move += 1;
-	}
-	else if (key == 115 && world->player->position->y - world->map->image[1]->img_height < world->height_w - 1)
-	{
-		world->player->position->y += world->map->image[1]->img_height;
-		world->move += 1;
-	}
-	mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, world->player->position->x, world->player->position->y);
+    int	x_tmp;
+	int	y_tmp;
+
+    x_tmp = world->player->position->x;
+    y_tmp = world->player->position->y;
+	if (key == 97 && x_tmp - world->map->image[1]->img_width > 0)
+		x_tmp -= world->map->image[1]->img_width;
+	else if (key == 100 && x_tmp + world->map->image[1]->img_width < world->width_w - 1)
+		x_tmp += world->map->image[1]->img_width;
+	else if (key == 119 && y_tmp - world->map->image[1]->img_height > 0)
+		y_tmp -= world->map->image[1]->img_height;
+	else if (key == 115 && y_tmp + world->map->image[1]->img_height < world->height_w - 1)
+		y_tmp += world->map->image[1]->img_height;
+    ft_printf("\tposition player : (%i, %i)\tmap = %c\n", x_tmp / world->map->image[0]->img_width, y_tmp / world->map->image[0]->img_height, world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width]);
+    if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] != '1') 
+    {
+        if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] == 'E' && world->map->c == 0)
+        {
+            close_window(world);
+        }
+	    mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, world->player->position->x, world->player->position->y);
+        mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, x_tmp, y_tmp);
+        world->player->position->x = x_tmp;
+        world->player->position->y = y_tmp;
+        if (world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] == 'C')
+        {
+            world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] = '0';
+            world->map->c--;
+        }
+        world->move++;
+    }
 }

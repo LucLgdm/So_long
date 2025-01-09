@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dossier contenant les fichiers PNG
-input_dir="Objects/5_Grass"  # Remplace par le chemin du dossier si nécessaire
+input_dir="2_objects/6_Flower"
 
 # Taille cible
 resize_dim="50x50"
