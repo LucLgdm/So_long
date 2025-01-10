@@ -6,11 +6,11 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 19:14:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/03 16:20:52 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:10:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/map.h"
+#include "../includes/world.h"
 
 void	check_e_c(t_map *map, char **visited)
 {
@@ -30,17 +30,17 @@ void	check_e_c(t_map *map, char **visited)
 	}
 }
 
-void	check_way(t_map *map)
+void	check_way(t_world *world)
 {
 	char	**visited;
 	int		i;
 
-	visited = ft_calloc((map->height), sizeof(char *));
+	visited = ft_calloc(world->map->height, sizeof(char *));
 	i = -1;
-	while (++i < map->height)
-		visited[i] = ft_calloc((map->width), sizeof(char));
-	dfs(map->start_pos->x, map->start_pos->y, map, visited);
-	check_e_c(map, visited);
+	while (++i < world->map->height)
+		visited[i] = ft_calloc((world->map->width), sizeof(char));
+	dfs(world->player->x, world->player->y, world->map, visited);
+	check_e_c(world->map, visited);
 }
 
 void	dfs(int x, int y, t_map *map, char **visited)

@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 16:25:49 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:56:52 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	key_handle(int key, void *data)
 
 int	close_window(t_world *world)
 {
+    (void)world;
 	// mlx_destroy_image(world->mlx, world->player->image->img);
 	// mlx_destroy_image(world->mlx, world->map->texit->image->img);
 	// mlx_destroy_image(world->mlx, world->map->image[0]->img);
@@ -33,41 +34,41 @@ int	close_window(t_world *world)
 	// mlx_destroy_image(world->mlx, world->map->coin->image->img);
 	// mlx_destroy_window(world->mlx, world->window);
 	// return (0);
-	free_all(world);
+	// free_all(world);
+    ft_printf("Closing window, end game !\n");
     exit(0);
 }
 
 void	move_player(t_world *world, int key)
 {
-    int	x_tmp;
-	int	y_tmp;
+    int	x_new;
+	int	y_new;
     char    c;
 
-    x_tmp = world->player->position->x;
-    y_tmp = world->player->position->y;
-	if (key == 97 && x_tmp - world->map->image[1]->img_width > 0)
-		x_tmp -= world->map->image[1]->img_width;
-	else if (key == 100 && x_tmp + world->map->image[1]->img_width < world->width_w - 1)
-		x_tmp += world->map->image[1]->img_width;
-	else if (key == 119 && y_tmp - world->map->image[1]->img_height > 0)
-		y_tmp -= world->map->image[1]->img_height;
-	else if (key == 115 && y_tmp + world->map->image[1]->img_height < world->height_w - 1)
-		y_tmp += world->map->image[1]->img_height;
-    c = world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width];
-    ft_printf("\tposition player : (%i, %i)\tmap = %c\n", x_tmp / world->map->image[0]->img_width, y_tmp / world->map->image[0]->img_height, c);
-    if (c != '1') 
+    x_new = world->player->x;
+    y_new = world->player->y;
+    if (key == 97 && x_new - world->image->img_width > 0)
+        x_new -= world->image->img_width;
+    else if (key == 100 && x_new + world->image->img_width < world->width_w - 1)
+        x_new += world->image->img_width;
+    else if (key == 115 && y_new + world->image->img_height < world->height_w - 1)
+        y_new += world->image->img_height;
+    else if (key == 119 && y_new - world->image->img_height > 0)
+        y_new -= world->image->img_height;
+    c = world->map->map[y_new / world->image->img_height][x_new / world->image->img_width];
+    if (c == 'E' && world->map->c == 0)
+        close_window(world);
+    else if (c != '1')
     {
-        mlx_put_image_to_window(world->mlx, world->window, world->map->image[1]->img, world->player->position->x, world->player->position->y);
-        mlx_put_image_to_window(world->mlx, world->window, world->player->image->img, x_tmp, y_tmp);
-        world->player->position->x = x_tmp;
-        world->player->position->y = y_tmp;
+        mlx_put_image_to_window(world->mlx, world->window, world->image->grass, world->player->x, world->player->y);
+        mlx_put_image_to_window(world->mlx, world->window, world->image->player, x_new, y_new);
+        world->player->x = x_new;
+        world->player->y = y_new;
         if (c == 'C')
         {
-            world->map->map[y_tmp / world->map->image[0]->img_height][x_tmp / world->map->image[0]->img_width] = '0';
+            world->map->map[y_new / world->image->img_height][x_new / world->image->img_width] = '0';
             world->map->c--;
         }
         world->move++;
     }
-    else if (c == 'E' && world->map->c == 0)
-        close_window(world);
 }

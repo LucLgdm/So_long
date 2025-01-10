@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:57:06 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/08 10:37:33 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 10:07:19 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 typedef struct s_player
 {
 	t_position	*position;
-	t_image		*image;
 }	t_player;
 
 #endif

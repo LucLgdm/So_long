@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 12:09:52 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:53:37 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	size = ft_strlen(argv[1]);
 	if (ft_strncmp((argv[1] + size - 4), ".ber", 4))
 		print_message_and_exit("Error\n");
+	world->player = malloc(sizeof(t_position));
+	if (!world->player)
+		print_message_and_exit("Error malloc position player\n");
+	world->exit = malloc(sizeof(t_position));
+	if (!world->exit)
+		print_message_and_exit("Error malloc position exit\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		print_message_and_exit("Error while opening the file\n");
@@ -29,14 +35,6 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	check_map_error(world);
 	if (world->map->height == world->map->width)
 		print_message_and_exit("Error\n");
-	world->player = malloc(sizeof(t_player));
-	if (!world->player)
-		print_message_and_exit("Error malloc player\n");
-	world->player->position = malloc(sizeof(t_position));
-	if (!world->player->position)
-		print_message_and_exit("Error malloc position player\n");
-	world->player->position->x = world->map->start_pos->x;
-	world->player->position->y = world->map->start_pos->y;
 	return (world);
 }
 
@@ -85,6 +83,6 @@ void	new_line_in_map(t_world *world, int height, char *line)
 void	check_map_error(t_world *world)
 {
 	check_border(world->map);
-	check_content(world->map);
-	check_way(world->map);
+	check_content(world);
+	check_way(world);
 }

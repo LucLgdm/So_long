@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 06:42:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/09 10:53:00 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 11:51:40 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # include "../mlx/mlx_int.h"
+# include "image.h"
 # include "map.h"
 # include "player.h"
 # include "utils.h"
@@ -26,11 +27,14 @@ typedef struct s_world
 {
 	void		*mlx;
 	void		*window;
+	t_map		*map;
+	t_position	*player;
+	t_position	*exit;
+	t_position	**coin;
+	t_image		*image;
+	int			move;
 	int			width_w;
 	int			height_w;
-	t_map		*map;
-	t_player	*player;
-	int			move;
 }	t_world;
 
 // World construction
@@ -38,6 +42,14 @@ t_world	*world_constructor(int argc, char **argv, t_world *world);
 void	extract_map(int fd, t_world *world);
 void	new_line_in_map(t_world *world, int height, char *line);
 void	check_map_error(t_world *world);
+
+// Checker map
+void	check_border(t_map *map);
+void	check_content(t_world *world);
+void	fill_struct(t_world *world, int i, int j);
+void	fill_coin_first(t_world *world, int i, int j);
+void	fill_coin_last(t_world *world, int i, int j);
+void	check_way(t_world *world);
 
 // Image generator
 void	image_generator(t_world *world);
