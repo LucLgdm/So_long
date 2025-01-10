@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:46:07 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 14:05:31 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:25:32 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,13 @@ int	main(int argc, char **argv)
 	world = (t_world *)malloc(sizeof(t_world));
 	world = world_constructor(argc, argv, world);
 	world->move = 0;
-	for(int i = 0; i < world->map->height; i++)
-	{
-		for(int j = 0; j < world->map->width; j++)
-			printf("%c", world->map->map[i][j]);
-		printf("\n");
-	}
 	world->mlx = mlx_init();
 	mlx_get_screen_size(world->mlx, &world->width_w, &world->height_w);
-	ft_printf("taille ecran : (%i, %i)\n", world->width_w, world->height_w);
 	image_generator(world);
 	world->width_w = world->map->width * world->image->img_width;
 	world->height_w = world->map->height * world->image->img_height;
-	ft_printf("taille map : (%i, %i)\n", world->map->width, world->map->height);
-    ft_printf("taille fenetre : (%i, %i)\n", world->width_w, world->height_w);
-	ft_printf("taille wall : (%i, %i)\n", world->image->img_width, world->image->img_height);
-	ft_printf("taille herbe : (%i, %i)\n", world->image->img_width, world->image->img_height);
-	ft_printf("taille player : (%i, %i)\n", world->image->img_width, world->image->img_height);
-	ft_printf("taille exit : (%i, %i)\n", world->image->img_width, world->image->img_height);
-	world->window = mlx_new_window(world->mlx, world->width_w, world->height_w, "so_long");
+	world->window = mlx_new_window(world->mlx, world->width_w, world->height_w,
+			"so_long");
 	display(world);
 	event_handle(world);
 	mlx_loop(world->mlx);
