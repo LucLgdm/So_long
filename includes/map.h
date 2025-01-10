@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:38:27 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 11:30:56 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:56:41 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_map
 	int			height;
 	int			width;
 }	t_map;
-
 
 // DFS Algo
 void	check_e_c(t_map *map, char **visited);

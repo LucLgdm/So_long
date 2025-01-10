@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 18:33:11 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:53:45 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,15 @@ void	check_map_error(t_world *world)
 	check_border(world->map);
 	check_content(world);
 	check_way(world);
+}
+
+void	fill_coin_last_2(t_world *world, t_position **tmp_pos)
+{
+	int	k;
+
+	k = -1;
+	while (++k < world->map->c)
+		world->coin[k] = tmp_pos[k];
+	world->coin[world->map->c] = 0;
+	free(tmp_pos);
 }

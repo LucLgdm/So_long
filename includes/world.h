@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 06:42:01 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 16:54:25 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:53:05 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	check_content(t_world *world);
 void	fill_struct(t_world *world, int i, int j);
 void	fill_coin_first(t_world *world, int i, int j);
 void	fill_coin_last(t_world *world, int i, int j);
+void	fill_coin_last_2(t_world *world, t_position **tmp_pos);
 void	check_way(t_world *world);
 
 // Image generator
