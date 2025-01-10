@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 17:43:15 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/10 16:40:06 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:15:03 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	check_content(t_world *world)
 	char	ch;
 
 	i = -1;
-	world->coin = (t_position **)malloc(sizeof(t_position *));
-	if (!world->coin)
-		print_message_and_exit("Error malloc coin\n");
 	world->map->c = 0;
+	world->coin = (t_position **)malloc(2 * sizeof(t_position *));
+		if (!world->coin)
+			print_message_and_exit("Error malloc coin\n");
 	while (++i < world->map->height)
 	{
 		j = -1;
@@ -81,11 +81,12 @@ void	fill_struct(t_world *world, int i, int j)
 
 void	fill_coin_first(t_world *world, int i, int j)
 {
-	world->coin[0] = malloc(sizeof(t_position *));
+	world->coin[0] = (t_position *)malloc(sizeof(t_position));
 	if (!world->coin[0])
 		print_message_and_exit("Error malloc coin first\n");
 	world->coin[0]->x = j;
 	world->coin[0]->y = i;
+	world->coin[world->map->c] = 0;
 }
 
 void	fill_coin_last(t_world *world, int i, int j)
@@ -93,7 +94,7 @@ void	fill_coin_last(t_world *world, int i, int j)
 	t_position	**tmp_pos;
 	int			k;
 
-	tmp_pos = (t_position **)malloc(world->map->c * sizeof(t_position *));
+	tmp_pos = (t_position **)malloc((world->map->c + 1) * sizeof(t_position *));
 	if (!tmp_pos)
 		print_message_and_exit("Error malloc last coin\n");
 	k = -1;
@@ -106,7 +107,7 @@ void	fill_coin_last(t_world *world, int i, int j)
 		tmp_pos[k]->y = world->coin[k]->y;
 	}
 	free_coin(world);
-	world->coin = (t_position **)malloc(world->map->c * sizeof(t_position *));
+	world->coin = (t_position **)malloc((world->map->c +1) * sizeof(t_position *));
 	tmp_pos[k] = (t_position *)malloc(sizeof(t_position));
 	if (!tmp_pos[k] || !world->coin)
 		print_message_and_exit("Error malloc last coin\n");
@@ -115,4 +116,6 @@ void	fill_coin_last(t_world *world, int i, int j)
 	k = -1;
 	while (++k < world->map->c)
 		world->coin[k] = tmp_pos[k];
+	world->coin[world->map->c] = 0;
+	free(tmp_pos);
 }

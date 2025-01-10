@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 07:24:29 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 11:53:37 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:33:11 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_world	*world_constructor(int argc, char **argv, t_world *world)
 	size = ft_strlen(argv[1]);
 	if (ft_strncmp((argv[1] + size - 4), ".ber", 4))
 		print_message_and_exit("Error\n");
-	world->player = malloc(sizeof(t_position));
+	world->player = (t_position *)malloc(sizeof(t_position));
 	if (!world->player)
 		print_message_and_exit("Error malloc position player\n");
-	world->exit = malloc(sizeof(t_position));
+	world->exit = (t_position *)malloc(sizeof(t_position));
 	if (!world->exit)
 		print_message_and_exit("Error malloc position exit\n");
 	fd = open(argv[1], O_RDONLY);
@@ -57,6 +57,7 @@ void	extract_map(int fd, t_world *world)
 				print_message_and_exit("Error with map->map malloc");
 		}
 		new_line_in_map(world, height, line);
+		free(line);
 		++height;
 		line = get_next_line(fd);
 	}

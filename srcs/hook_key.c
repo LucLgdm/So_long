@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 16:29:26 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:54:14 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	close_window(t_world *world)
     mlx_destroy_image(world->mlx, world->image->exit);
 	mlx_destroy_window(world->mlx, world->window);
 	free_all(world);
-	ft_printf("\nClosing window, end game !\nWINNER !!!!\n");
+	ft_printf("\nClosing window... End of game !\n");
 	exit(0);
 }
 

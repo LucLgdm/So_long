@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 19:14:38 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/10 16:14:32 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 18:38:24 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	check_way(t_world *world)
 		visited[i] = ft_calloc((world->map->width), sizeof(char));
 	dfs(world->player->x, world->player->y, world->map, visited);
 	check_e_c(world->map, visited);
+	i = -1;
+	while (++i < world->map->height)
+		free(visited[i]);
+	free(visited);
 }
 
 void	dfs(int x, int y, t_map *map, char **visited)
