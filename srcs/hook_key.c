@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 18:56:24 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:27:12 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	key_handle(int key, void *data)
 
 int	close_window(t_world *world)
 {
-	(void)world;
 	mlx_destroy_image(world->mlx, world->image->wall);
 	mlx_destroy_image(world->mlx, world->image->grass);
 	mlx_destroy_image(world->mlx, world->image->player);
 	mlx_destroy_image(world->mlx, world->image->coin);
 	mlx_destroy_image(world->mlx, world->image->exit);
 	mlx_destroy_window(world->mlx, world->window);
+	mlx_destroy_display(world->mlx);
 	free_all(world);
-	ft_printf("\nClosing window... End of game !\n");
+	ft_printf("\nClosing window... End of the game !\n");
 	exit(0);
 }
 

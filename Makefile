@@ -6,7 +6,7 @@
 #    By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 12:24:12 by lde-merc          #+#    #+#              #
-#    Updated: 2025/01/03 10:09:41 by lde-merc         ###   ########.fr        #
+#    Updated: 2025/01/10 19:21:05 by lde-merc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCLUDES = includes/
 all: makelibft makemlx $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX_LIB)
-		$(CC) $(CFLAGS) $(OBJ) -lm $(LIBFT) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 		@echo "Creation of the executable $(NAME)"
 		
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

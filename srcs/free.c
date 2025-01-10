@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:33:49 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 18:05:30 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/10 19:27:58 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	free_all(t_world *world)
 	free_map(world);
 	free_image(world);
 	free_player_exit(world);
+	free(world->mlx);
 	free(world);
 }
 
