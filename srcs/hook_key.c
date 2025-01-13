@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:15:43 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/10 19:27:12 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:26:18 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_handle(int key, void *data)
 {
 	t_world	*world;
-
+	
 	world = (t_world *)data;
 	if (key == 65307)
 		close_window(world);

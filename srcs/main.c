@@ -6,7 +6,7 @@
 /*   By: lde-merc <lde-merc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 14:46:07 by lde-merc          #+#    #+#             */
-/*   Updated: 2025/01/13 09:36:05 by lde-merc         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:12:15 by lde-merc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int	main(int argc, char **argv)
 	display(world);
 	event_handle(world);
 	mlx_loop(world->mlx);
-	free_all(world);
 	return (0);
 }
